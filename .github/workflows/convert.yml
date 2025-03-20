@@ -1,5 +1,7 @@
 name: Convert
 on:
+  repository_dispatch:
+    types: [source_push]
   schedule:
     - cron: "0 7 * * *"
   workflow_dispatch:
@@ -25,8 +27,8 @@ jobs:
           branch: release
           skip_checkout: true
           skip_dirty_check: true
-          push_options: '--force'
-          file_pattern: 'release/*'
+          push_options: "--force"
+          file_pattern: "release/*"
           commit_message: release
       - name: Delete workflow runs
         uses: Mattraks/delete-workflow-runs@v2.0.6
