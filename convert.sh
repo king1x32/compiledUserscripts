@@ -46,7 +46,10 @@ done
 function compile_js() {
   local file=$1
   base=$(basename "$file" .js)
-  eval terser --compress --mangle --comments false --parse bare_returns --output js/$base.js -- $file
+  eval terser $file -o js/$base.js \
+  -c defaults=true,arrows=true,arguments=true,booleans=true,collapse_vars=true,comparisons=true,conditionals=true,dead_code=true,directives=true,drop_console=false,drop_debugger=true,evaluate=true,hoist_funs=true,hoist_props=true,hoist_vars=true,if_return=true,inline=true,join_vars=true,keep_classnames=false,keep_fargs=false,keep_fnames=false,loops=true,negate_iife=true,properties=true,reduce_funcs=true,reduce_vars=true,sequences=true,side_effects=true,switches=true,toplevel=true,typeofs=true,unused=true,passes=3 \
+  -m eval=true,keep_classnames=false,keep_fnames=false,module=false,toplevel=true,reserved=['GM_addStyle','GM_getValue','GM_setValue','GM_xmlhttpRequest','unsafeWindow'] \
+  --source-map
 }
 export -f compile_js
 parallel -j 16 compile_js ::: pr-js/*.js
