@@ -1,0 +1,20 @@
+// ==UserScript==
+// @name                Disable YouTube AutoPause
+// @name:en             Disable YouTube AutoPause
+// @namespace           http://tampermonkey.net/
+// @version             2024.02.21.0
+// @license             MIT License
+// @author              CY Fung
+// @match               https://www.youtube.com/*
+// @exclude             /^https?://\S+\.(txt|png|jpg|jpeg|gif|xml|svg|manifest|log|ini)[^\/]*$/
+// @icon                https://raw.githubusercontent.com/cyfung1031/userscript-supports/main/icons/disable-youtube-autopause.svg
+// @supportURL          https://github.com/cyfung1031/userscript-supports
+// @run-at              document-start
+// @grant               none
+// @unwrap
+// @allFrames           true
+// @inject-into         page
+// @downloadURL https://raw.githubusercontent.com/king1x32/compiledUserscripts/release/release/Disable20YouTube20AutoPause.user.js
+// @updateURL https://raw.githubusercontent.com/king1x32/compiledUserscripts/release/release/Disable20YouTube20AutoPause.meta.js
+// ==/UserScript==
+!function(){"use strict";function e(...e){Date.now()<i||(i=Date.now()+280,console.log(...e))}function t(e,t,o,n,r,s,c){Object.defineProperty(e,t,{enumerable:!0,configurable:!0,get:()=>(a.resolve(new Date).then(r).catch(console.warn),2===o?`${n}`:n),set(e){const t=c.get(this);return a.resolve([t,e,new Date]).then(s).catch(console.warn),c.set(this,e),!0}})}function o(o){if(!o||r.has(o))return;const n=o.playbackPauseDelayMs,a=o.promptDelaySec,i=o.lactThresholdMs,u=Math.floor(.1*Number.MAX_SAFE_INTEGER),h=Math.floor(u/1e3);if("playbackPauseDelayMs"in o&&n>=0&&n<4*u){r.set(o,n);const a="string"==typeof n?2:+("number"==typeof n);a>=1&&t(o,"playbackPauseDelayMs",a,5*u,(t=>{e(`${l} is trying to pause video...`,t.toLocaleTimeString())}),(e=>{const[t,o,n]=e;console.log(`${l} is trying to change value 'playbackPauseDelayMs' from ${t} to ${o} ...`,n.toLocaleTimeString())}),r),"number"!=typeof(o.showPausedActions||0).length||o.tvTyh||(o.tvTyh=[],function(e){Object.defineProperty(e,"showPausedActions",{enumerable:!0,configurable:!0,get(){const e=this.tvTyh;return(e||0).length>=1&&(e.length=0),e},set:()=>!0})}(o))}if("promptDelaySec"in o&&a>=0&&a<4*h){s.set(o,a);const n="string"==typeof a?2:+("number"==typeof a);n>=1&&t(o,"promptDelaySec",n,5*h,(t=>{e(`${l} is trying to pause video...`,t.toLocaleTimeString())}),(e=>{const[t,o,n]=e;console.log(`${l} is trying to change value 'promptDelaySec' from ${t} to ${o} ...`,n.toLocaleTimeString())}),s)}if("lactThresholdMs"in o&&i>=0&&i<4*u){c.set(o,i);const e="string"==typeof i?2:+("number"==typeof i);e>=1&&t(o,"lactThresholdMs",e,5*u,(()=>{}),(e=>{const[t,o,n]=e;console.log(`${l} is trying to change value 'lactThresholdMs' from ${t} to ${o} ...`,n.toLocaleTimeString())}),c)}}function n(){1===arguments.length&&(i=Date.now()+3400),a.resolve(0).then((()=>{let e=null;const t=document.querySelector("#page-manager")||0,a=u(t);try{e=a.data.playerResponse.messages}catch(e){}if(e&&e.length>0)for(const t of e)if((t||0).youThereRenderer){let e=null;try{e=t.youThereRenderer.configData.youThereData}catch(e){}e&&o(e),e=null;break}const r=document.querySelector("ytd-watch-flexy")||0,s=u(r);if(s){const e=(s.youThereManager_||r.youThereManager_||0).youThereData_||0;e&&o(e);const t=s.youthereDataChanged_;"function"!=typeof t||t.lq2S7||(s.youthereDataChanged_=function(e){return function(){console.log("youthereDataChanged_()");const t=e.apply(this,arguments);return n(),t}}(t),s.youthereDataChanged_.lq2S7=1)}})).catch(console.warn)}const a=(async()=>{})().constructor,r=new WeakMap,s=new WeakMap,c=new WeakMap,l="YouTube";let i=0;const u=e=>e?e.polymerController||e.inst||e||0:e||0;document.addEventListener("yt-page-data-updated",n,!1),document.addEventListener("yt-navigate-finish",n,!1),document.addEventListener("spfdone",n,!1)}();
