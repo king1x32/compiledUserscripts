@@ -1,0 +1,20 @@
+// ==UserScript==
+// @name                Disable YouTube Music AutoPause
+// @name:en             Disable YouTube Music AutoPause
+// @namespace           http://tampermonkey.net/
+// @version             2023.12.01.0
+// @license             MIT License
+// @author              CY Fung
+// @match               https://music.youtube.com/*
+// @exclude             /^https?://\S+\.(txt|png|jpg|jpeg|gif|xml|svg|manifest|log|ini)[^\/]*$/
+// @icon                https://raw.githubusercontent.com/cyfung1031/userscript-supports/main/icons/disable-youtube-autopause.svg
+// @supportURL          https://github.com/cyfung1031/userscript-supports
+// @run-at              document-start
+// @grant               none
+// @unwrap
+// @allFrames           true
+// @inject-into         page
+// @downloadURL https://raw.githubusercontent.com/king1x32/compiledUserscripts/release/release/Disable20YouTube20Music20AutoPause.user.js
+// @updateURL https://raw.githubusercontent.com/king1x32/compiledUserscripts/release/release/Disable20YouTube20Music20AutoPause.meta.js
+// ==/UserScript==
+!function(){"use strict";function e(...e){Date.now()<y||(y=Date.now()+280,console.log(...e))}function t(e,t,n,o,a,r,l){Object.defineProperty(e,t,{enumerable:!0,configurable:!0,get:()=>(s.resolve(new Date).then(a).catch(console.warn),2===n?`${o}`:o),set(e){let t=l.get(this);return s.resolve([t,e,new Date]).then(r).catch(console.warn),l.set(this,e),!0}})}function n(n){if(!n||l.has(n))return;const o=n.playbackPauseDelayMs,a=n.promptDelaySec,r=n.lactThresholdMs,s=Math.floor(.1*Number.MAX_SAFE_INTEGER),y=Math.floor(s/1e3);if("playbackPauseDelayMs"in n&&o>=0&&o<4*s){l.set(n,o);const a="string"==typeof o?2:+("number"==typeof o);a>=1&&t(n,"playbackPauseDelayMs",a,5*s,(t=>{e(`${u} is trying to pause video...`,t.toLocaleTimeString())}),(e=>{const[t,n,o]=e;console.log(`${u} is trying to change value 'playbackPauseDelayMs' from ${t} to ${n} ...`,o.toLocaleTimeString())}),l),"number"!=typeof(n.showPausedActions||0).length||n.tvTyh||(n.tvTyh=[],function(e){Object.defineProperty(e,"showPausedActions",{enumerable:!0,configurable:!0,get(){const e=this.tvTyh;return(e||0).length>=1&&(e.length=0),e},set:()=>!0})}(n))}if("promptDelaySec"in n&&a>=0&&a<4*y){c.set(n,a);const o="string"==typeof a?2:+("number"==typeof a);o>=1&&t(n,"promptDelaySec",o,5*y,(t=>{e(`${u} is trying to pause video...`,t.toLocaleTimeString())}),(e=>{const[t,n,o]=e;console.log(`${u} is trying to change value 'promptDelaySec' from ${t} to ${n} ...`,o.toLocaleTimeString())}),c)}if("lactThresholdMs"in n&&r>=0&&r<4*s){i.set(n,r);const e="string"==typeof r?2:+("number"==typeof r);e>=1&&t(n,"lactThresholdMs",e,5*s,(()=>{}),(e=>{const[t,n,o]=e;console.log(`${u} is trying to change value 'lactThresholdMs' from ${t} to ${n} ...`,o.toLocaleTimeString())}),i)}}function o(e){if(1==e||3==e){h>1e9&&(h=9);let e=h;requestAnimationFrame((()=>{e===h&&a()}))}}function a(){let e=null;const t=document.querySelector("#player")||0;try{e=(p(t).__data||t.__data||0).playerResponse_.messages}catch(e){}if(e&&e.length>0)for(const t of e)if(t.youThereRenderer){let e=null;try{e=t.youThereRenderer.configData.youThereData}catch(e){}e&&n(e),e=null;break}}function r(){a();const e=document.querySelector("#player")||0,t=p(e).playerApi_||e.playerApi_||p(e).playerApi||e.playerApi||0;"object"==typeof t&&(void 0===t[f]&&"function"==typeof t.getPlayerState&&(t[f]=t.getPlayerState,t.getPlayerState=function(){let e=this[f](...arguments);if(1==e||3==e)try{a()}catch(e){}return e}),"removeEventListener"in t&&"addEventListener"in t&&(t.removeEventListener("onStateChange",o,!1),t.addEventListener("onStateChange",o,!1)))}const s=(async()=>{})().constructor,l=new WeakMap,c=new WeakMap,i=new WeakMap,u="YouTube Music";let y=0;const p=e=>e?e.polymerController||e.inst||e||0:e||0;let f=Symbol(),h=0,g=0;document.addEventListener("canplay",(function(e){"VIDEO"==e.target.nodeName&&e.target.closest("#player")&&async function(){y=Date.now()+3400,g++;let e=g;g>1e9&&(g=9),await s.resolve(0),e===g&&(r(),await new s((e=>setTimeout(e,3200))),e===g&&(r(),await new s((e=>setTimeout(e,5400))),e===g&&r()))}()}),!0)}();
