@@ -2,6 +2,8 @@ name: Convert
 on:
   repository_dispatch:
     types: [source_push]
+  push:
+    branches: [main]
   schedule:
     - cron: "0 */12 * * *"
   workflow_dispatch:
