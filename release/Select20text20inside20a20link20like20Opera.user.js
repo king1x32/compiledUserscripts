@@ -1,0 +1,15 @@
+// ==UserScript==
+// @name Select text inside a link like Opera
+// @version 6.0.0
+// @homepageURL https://github.com/eight04/select-text-inside-a-link-like-opera#readme
+// @supportURL https://github.com/eight04/select-text-inside-a-link-like-opera/issues
+// @license MIT
+// @author eight <eight04@gmail.com> (http://eight04.blogspot.tw)
+// @namespace eight04.blogspot.com
+// @include *
+// @grant GM_addStyle
+// @run-at document-start
+// @downloadURL https://raw.githubusercontent.com/king1x32/compiledUserscripts/release/release/Select20text20inside20a20link20like20Opera.user.js
+// @updateURL https://raw.githubusercontent.com/king1x32/compiledUserscripts/release/release/Select20text20inside20a20link20like20Opera.meta.js
+// ==/UserScript==
+function e(e){if(function(e){const t=a?a():[Math.abs(e.pageX-u[0]),Math.abs(e.pageY-u[1])];return t[0]>=t[1]}(e)){if("dragstart"===e.type&&e.preventDefault(),"new"===l){const e=t();r.collapse(e.offsetNode,e.offset)}else if("add"===l){const e=new Range,n=t();e.setStart(n.offsetNode,n.offset),r.addRange(e)}f="STARTED"}else n()}function t(){return o(u[0]-window.scrollX,u[1]-window.scrollY)}function n(){d&&d.classList.remove("select-text-inside-a-link"),f="WAITING",d=null}function o(e,t){if(document.caretPositionFromPoint)return document.caretPositionFromPoint(e,t);var n=document.caretRangeFromPoint(e,t);return{offsetNode:n.startContainer,offset:n.startOffset}}function s(e){for(;e&&"A"!==e.nodeName&&"a"!==e.nodeName;)e=e.parentNode;return e}const a=function(){const e=[[0,0],[0,0],[0,0]];let t=0;return document.addEventListener("mousemove",n=>{e[t][0]=n.pageX,e[t][1]=n.pageY,t=(t+1)%3}),()=>{const n=[];for(let o=0;o<2;o++)n.push(Math.abs(e[t][o]-e[(t+1)%3][o])+Math.abs(e[(t+1)%3][o]-e[(t+2)%3][o]));return n}}(),r=window.getSelection();let i,d,f="WAITING",c=0;const u=[0,0];let l;const m={mousedown:e=>{if("WAITING"===f){if(e.altKey||e.button)return;if(/img/i.test(e.target.nodeName))return;const n=s(e.target);if(!n||!n.href)return;if(l=e.ctrlKey?"add":e.shiftKey?"extend":"new",u[0]=e.pageX,u[1]=e.pageY,"new"===l&&!r.isCollapsed&&function(e,t){var n,o=t.rangeCount;for(n=0;n<o;n++)if(t.getRangeAt(n).isPointInRange(e.offsetNode,e.offset))return!0;return!1}(t(),r))return;c=0,f="STARTING",d=n,d.classList.add("select-text-inside-a-link")}},mousemove:t=>{if("STARTING"===f&&(c++,c>=3&&e(t)),"STARTED"===f){const e=o(t.pageX-window.scrollX,t.pageY-window.scrollY);r.extend(e.offsetNode,e.offset)}},mouseup:()=>{"WAITING"!==f&&(i=f,f="ENDING",setTimeout(n))},click:e=>{"ENDING"===f&&("STARTED"===i&&s(e.target)===d&&(e.preventDefault(),e.stopImmediatePropagation()),n())},dragstart:t=>{"STARTED"!==f?"STARTING"===f&&e(t):t.preventDefault()}};for(const e in m)document.addEventListener(e,m[e],!0);document.contentType&&document.contentType.endsWith("/xml")||document.addEventListener("DOMContentLoaded",function(){GM_addStyle(".select-text-inside-a-link{ -moz-user-select: text!important; }")});

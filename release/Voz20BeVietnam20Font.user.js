@@ -1,0 +1,11 @@
+// ==UserScript==
+// @name                 Voz BeVietnam Font
+// @namespace            Voz BeVietnam Font
+// @version              1.4
+// @author               Fioren
+// @run-at               document-start
+// @include              http*://voz.vn/*
+// @downloadURL https://raw.githubusercontent.com/king1x32/compiledUserscripts/release/release/Voz20BeVietnam20Font.user.js
+// @updateURL https://raw.githubusercontent.com/king1x32/compiledUserscripts/release/release/Voz20BeVietnam20Font.meta.js
+// ==/UserScript==
+var e,t,n;n=["/* vietnamese */","@font-face {","  font-family: 'Be Vietnam';","  font-style: normal;","  font-weight: 400;","  src: url(https://fonts.gstatic.com/s/bevietnam/v10/FBVzdDflz-iPfoPuIC2iIqkn6H9k.woff2) format('woff2');","  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;","}","/* latin-ext */","@font-face {","  font-family: 'Be Vietnam';","  font-style: normal;","  font-weight: 400;","  src: url(https://fonts.gstatic.com/s/bevietnam/v10/FBVzdDflz-iPfoPuIC2iIqgn6H9k.woff2) format('woff2');","  unicode-range: U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;","}","/* latin */","@font-face {","  font-family: 'Be Vietnam';","  font-style: normal;","  font-weight: 400;","  src: url(https://fonts.gstatic.com/s/bevietnam/v10/FBVzdDflz-iPfoPuIC2iIqYn6A.woff2) format('woff2');","  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;","}",".message-body,html,htmlbutton,input,optgroup,select,textarea,.fr-box.fr-basic .fr-element{","font-family:'Be Vietnam','Segoe UI' !important","}"].join("\n"),"undefined"!=typeof GM_addStyle?GM_addStyle(n):"undefined"!=typeof PRO_addStyle?PRO_addStyle(n):"undefined"!=typeof addStyle?addStyle(n):((e=document.createElement("style")).type="text/css",e.appendChild(document.createTextNode(n)),(t=document.getElementsByTagName("head")).length>0?t[0].appendChild(e):document.documentElement.appendChild(e));
